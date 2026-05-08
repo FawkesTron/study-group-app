@@ -1,0 +1,101 @@
+<div class="event-grid-wrapper" [class.light]="theme.isLight()">
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge section-badge--inperson">In-Person</span>
+      <h2 class="section-title">Upcoming Study Groups</h2>
+      <div class="divider"></div>
+      <a class="more-link" routerLink="/events">more events</a>
+    </div>
+
+    <div class="grid">
+      @for (event of inPersonEvents; track event.id) {
+        <div class="card">
+          <img class="card-image" [src]="event.imageUrl" [alt]="event.title" />
+          <div class="card-body">
+            <h3 class="card-title">{{ event.title }}</h3>
+            <div class="card-meta">
+              <div class="meta-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                {{ event.dateTime }}
+              </div>
+              <div class="meta-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21s-7-6.75-7-11a7 7 0 0 1 14 0c0 4.25-7 11-7 11z" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                {{ event.location }}
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <p class="member-count">
+              There are <span>{{ event.memberCount }}</span> members joining this meeting.
+            </p>
+            <button
+              class="btn-join"
+              [class.btn-join--primary]="!event.isJoined"
+              [class.btn-join--cancel]="event.isJoined"
+              (click)="toggleJoin(event)"
+            >
+              {{ event.isJoined ? 'Cancel registration' : 'Join meeting' }}
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge section-badge--virtual">Virtual</span>
+      <h2 class="section-title">Online Study Groups</h2>
+      <div class="divider"></div>
+      <a class="more-link" routerLink="/events">more events</a>
+    </div>
+
+    <div class="grid">
+      @for (event of virtualEvents; track event.id) {
+        <div class="card">
+          <img class="card-image" [src]="event.imageUrl" [alt]="event.title" />
+          <div class="card-body">
+            <h3 class="card-title">{{ event.title }}</h3>
+            <div class="card-meta">
+              <div class="meta-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                {{ event.dateTime }}
+              </div>
+              <div class="meta-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21s-7-6.75-7-11a7 7 0 0 1 14 0c0 4.25-7 11-7 11z" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                {{ event.location }}
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <p class="member-count">
+              There are <span>{{ event.memberCount }}</span> members joining this meeting.
+            </p>
+            <button
+              class="btn-join"
+              [class.btn-join--primary]="!event.isJoined"
+              [class.btn-join--cancel]="event.isJoined"
+              (click)="toggleJoin(event)"
+            >
+              {{ event.isJoined ? 'Cancel registration' : 'Join meeting' }}
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+</div>

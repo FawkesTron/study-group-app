@@ -1,0 +1,42 @@
+<div class="threat-feed-wrapper" [class.light]="theme.isLight()">
+  <div class="section-header">
+    <span class="section-badge section-badge--red">Live Feed</span>
+    <h2 class="section-title">Cybersecurity Threat Intel</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="feed-card">
+    <div class="feed-meta">
+      <div class="live-indicator">
+        <span class="pulse-dot"></span> Live — updating every 60s
+      </div>
+      <div class="sources">Source: NIST NVD · CISA KEV</div>
+    </div>
+
+    <div class="feed-list">
+      <div class="feed-item">
+        <div class="severity-badge critical">CRITICAL</div>
+        <div class="item-details">
+          <h3>CVE-2025-1234 — Remote Code Execution in Apache HTTP Server 2.4.x</h3>
+          <p class="meta-data">2 hours ago &middot; Apache &middot; CVSS 9.8</p>
+        </div>
+      </div>
+
+      <div class="feed-item">
+        <div class="severity-badge high">HIGH</div>
+        <div class="item-details">
+          <h3>CVE-2025-5678 — Privilege Escalation via Windows Kernel Driver</h3>
+          <p class="meta-data">5 hours ago &middot; Microsoft &middot; CVSS 8.1</p>
+        </div>
+      </div>
+      
+      <div class="feed-item">
+        <div class="severity-badge medium">MEDIUM</div>
+        <div class="item-details">
+          <h3>CVE-2025-3344 — OpenSSL Memory Leak Leads to Denial of Service</h3>
+          <p class="meta-data">12 hours ago &middot; OpenSSL &middot; CVSS 6.5</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

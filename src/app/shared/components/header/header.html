@@ -1,0 +1,35 @@
+<section class="hero" [class.light]="theme.isLight()">
+    <div class="hero__content">
+        <div class="hero__left">
+            <div class="hero__text">
+                <h1>Connect. Learn. <span class="hero__accent">Stay Secure.</span></h1>
+                <p>Join our community meet-ups to sharpen your skills, share ideas, and network.</p>
+            </div>
+            <div class="hero__actions">
+                <button class="btn btn--primary">Browse events</button>
+                <button class="btn btn--outline">Create account</button>
+            </div>
+        </div>
+
+        <div class="hero__right">
+            <div class="hero__polaroid-stack" [class.is-hovered]="stackHovered" (mouseenter)="stackHovered = true" (mouseleave)="stackHovered = false">
+                <div class="hero__polaroid p1">
+                    <img src="assets/images/event1.jpg" alt="Meetup event" />
+                    <!-- <p>Event #1</p> -->
+                </div>
+                <div class="hero__polaroid p2">
+                    <img src="assets/images/event2.jpg" alt="Workshop" />
+                    <!-- <p>Workshop '26</p> -->
+                </div>
+                <div class="hero__polaroid p3">
+                    <img src="assets/images/event3.jpg" alt="Cohort photo" />
+                    <!-- <p>Cohort 4</p> -->
+                </div>
+                <div class="hero__polaroid p4">
+                    <img src="assets/images/event4.jpg" alt="CTF night" />
+                    <!-- <p>CTF Night</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

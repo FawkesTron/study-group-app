@@ -1,0 +1,166 @@
+.calendar-wrapper {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 2rem 5%;
+  width: 100%;
+}
+
+.calendar-strip {
+  position: relative;
+  background: #1a1a2e;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s, border-color 0.3s;
+
+  &.light {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+    .month-label      { color: rgba(0,0,0,0.4); }
+    .day-name         { color: rgba(0,0,0,0.45); }
+    .day-number       { color: #1a1a2e; }
+    .day-cell   { 
+      &:hover { background: rgba(0,0,0,0.04); }
+      &.is-past:hover { background: transparent; }
+      &.is-weekend .day-name { color: #0f9e7b; }
+      /* Today indicator in Light Mode */
+      &.is-today .day-number {
+        border-color: rgba(15, 158, 123, 0.4);
+        color: #0f9e7b;
+      }
+      /* Selected state in Light Mode */
+      &.is-selected .day-number {
+        background: #5b21b6;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(91, 33, 182, 0.3);
+      }
+    }
+    .event-dot        { background: #0f9e7b; }
+    .tooltip          { 
+      background: #fff; 
+      border-color: rgba(0,0,0,0.06); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12); 
+    }
+    .tooltip::after   { border-top-color: #fff; }
+    .tooltip__date    { color: rgba(0, 0, 0, 0.4); }
+    .tooltip__title   { color: #1a1a2e; }
+    .tooltip__time    { color: #0f9e7b; }
+    .tooltip__empty   { color: rgba(0,0,0,0.5); }
+  }
+}
+
+.month-label {
+  position: absolute;
+  top: -1.4rem;
+  left: 1.5rem;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+.day-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  user-select: none;
+
+  &:hover { background: rgba(255,255,255,0.05); }
+  &.is-past { cursor: default; &:hover { background: transparent; } }
+  &.is-weekend .day-name { color: rgba(94,234,212,0.55); }
+}
+
+.day-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+.day-number {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  transition: all 0.2s;
+
+  .is-selected & {
+    background: #5b21b6;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(91,33,182,0.45);
+  }
+
+  .is-today & {
+    border: 1.5px solid rgba(94,234,212,0.5);
+    color: #5eead4;
+  }
+
+  .is-past & { color: rgba(255,255,255,0.22); }
+}
+
+.event-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #5eead4;
+  position: absolute;
+  bottom: 6px; // Adjusted slightly higher to stay inside the cell padding
+  z-index: 2;
+}
+
+// --- Tooltip ---
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: #1e1e35;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 10px 14px;
+  width: 185px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 50;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1e1e35;
+  }
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  &__date  { font-size: 11px; color: rgba(255,255,255,0.2); margin-bottom: 6px; }
+  &__event { display: flex; flex-direction: column; gap: 3px; }
+  &__title { font-size: 13px; font-weight: 600; color: #fff; }
+  &__time  { font-size: 12px; color: #5eead4; }
+  &__empty { font-size: 13px; color: rgba(255,255,255,0.5); font-style: italic; }
+}

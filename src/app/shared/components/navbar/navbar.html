@@ -1,0 +1,51 @@
+<header [class.scrolled]="isScrolled" [class.light]="theme.isLight()">
+    <div class="container">
+        <a class="logo" routerLink="/">
+            <div class="logo__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#5eead4" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#5eead4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <span class="logo__text">Study<span>Group</span></span>
+        </a>
+
+        <ul class="nav__links">
+            <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+            <li><a routerLink="/events" routerLinkActive="active">Events</a></li>
+            <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+            <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
+        </ul>
+
+        <div class="nav__right">
+            <button class="theme-btn" (click)="toggleTheme()" title="Toggle theme">
+                <svg *ngIf="!isLight" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <svg *ngIf="isLight" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <a routerLink="/login" class="btn btn--login">Login</a>
+            <a routerLink="/register" class="btn btn--register">Register</a>
+
+            <button class="hamburger" [class.open]="menuOpen" (click)="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="mobile-menu" [class.open]="menuOpen">
+        <a routerLink="/" (click)="menuOpen = false">Home</a>
+        <a routerLink="/" (click)="menuOpen = false">Events</a>
+        <a routerLink="/" (click)="menuOpen = false">About</a>
+        <a routerLink="/" (click)="menuOpen = false">Blog</a>
+        <a routerLink="/login" (click)="menuOpen = false">Login</a>
+        <div class="divider"></div>
+        <a routerLink="/register" (click)="menuOpen = false" class="mobile-menu__register">Register</a>
+    </div>
+</header>

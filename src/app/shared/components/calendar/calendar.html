@@ -1,0 +1,35 @@
+<div class="calendar-wrapper" (click)="closeTooltip()">
+    <div class="calendar-strip" [class.light]="theme.isLight()">
+
+        <span class="month-label">{{ monthLabel }}</span>
+
+        @for (day of days; track day.date; let i = $index) {
+            <div 
+                class="day-cell"
+                [class.is-selected]="selectedIndex === i"
+                [class.is-today]="day.isToday"
+                [class.is-past]="day.isPast"
+                [class.is-weekend]="day.isWeekend"
+                (click)="onDayClick(i, $event)"
+            >
+                <span class="day-name">{{ day.day }}</span>
+                <span class="day-number">{{ day.dateNumber }}</span>
+                @if (day.hasEvent) {
+                    <span class="event-dot"></span>
+                }
+
+                <div class="tooltip" [class.visible]="openTooltipIndex === i" (click)="$event.stopPropagation()">
+                    <p class="tooltip__date">{{ day.day }}, {{ monthLabel }}</p>
+                    @if (day.hasEvent) {
+                        <div class="tooltip__event">
+                            <span class="tooltip__title">{{ day.hasEvent.title }}</span>
+                            <span class="tooltip__time">{{ day.hasEvent.time }}</span>
+                        </div>
+                    } @else {
+                        <p class="tooltip__empty">No events scheduled</p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
