@@ -40,4 +40,8 @@ export class Login {
 
   get username() { return this.form.get('username'); }
   get password() { return this.form.get('password'); }
+
+  onGoogleLogin() {
+    window.location.href = 'http://localhost:8081/oauth2/authorization/google';
+  }
 }
